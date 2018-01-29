@@ -23,49 +23,48 @@ db.create_all()
 
 @app.route("/app")
 def get_app():
-	return send_from_directory('','app.js')
-	
+    return send_from_directory('','src/main.js')
+    
 @app.route("/")
 def index():
-	return send_from_directory('','index.html')
+    return send_from_directory('','index.html')
 
 @app.route("/list")
-def get_users():
-	tasks = Task.query.all()
+def get_list():
+    tasks = Task.query.all()
     return jsonify(tasks)
 
 @app.route("/<int:id>")
-def get_users():
-	tasks = Task.query.all()
+def get_task():
+    tasks = Task.query.all()
     return jsonify(tasks)
 
 @app.route("/<int:id>/answers")
-def get_users():
-	tasks = Task.query.all()
-	answers = Answer.query.all(task)
-	
+def get_answers():
+    tasks = Task.query.all()
+    answers = Answer.query.all(task)
     return jsonify(tasks)
 
 @app.route('/new',methods=['POST'])
-def add_task():
-	return
+def create_task():
+    return
 
 @app.route('/subtask/<int:task_id>',methods=['POST'])
-def add_task():
-	return
-	
+def create_subtask():
+    return
+    
 @app.route('/resolve/<int:task_id>',methods=['POST'])
-def add_task():
-	return
+def send_resolve():
+    return
 
 @app.route('/accept/<int:task_id>',methods=['POST'])
-def add_task():
-	return
+def accept_resolving():
+    return
 
 @app.route('/<int:user_id>/events')
-def add_task():
-	events = {}
-	return jsonify(events)
+def get_events():
+    events = {}
+    return jsonify(events)
 
 def delete_task(task_id):
     task = Task.query.get(task_id)

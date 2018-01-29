@@ -1,67 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-</head>
-<body>
-	
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<div id="app">
-		<div id="panel-menu">
-			<a>Show movements</a>
-			<a>Compute</a>
-		</div>
-		<app-grid
-		    :data="gridData"
-		    :columns="gridColumns"
-		    :filter-key="searchQuery">
-		</app-grid>
-	</div>
-	<!-- component template -->
-	<script type="text/x-template" id="grid-template">
-	  <table>
-	    <thead>
-	      <tr>
-	        <th v-for="key in columns"
-	          @click="sortBy(key)"
-	          :class="{ active: sortKey == key }">
-	          {{ key | capitalize }}
-	          <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
-	          </span>
-	        </th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr v-for="row in filteredData">
-	        <td v-for="cell in row">
-				<a v-show="cell.edit==false" @click="cell.edit = true">{{cell.value}}</a>
-				<a v-show="cell.edit==true" @click="cell.edit = false">Pong!</a>
-<!--
-				<div v-show="cell.type != 'binary' && cell.edit == false">
-					<label @click="setFocus(cell)">{{cell.value}}</label>
-				</div>
-				<div v-show="cell.type == 'binary'">
-					<input @blur="cell.edit = false" v-show="cell.edit == true" v-model="cell.value" type="checkbox">
-					<input v-show="cell.edit != true" disabled v-model="cell.value" type="checkbox">
-				</div>
-				<div v-show="cell.type == 'string' && cell.edit == true">
-					<input @blur="cell.edit = false" @keyup.enter="cell.edit = false" v-model="cell.value">
-				</div>
-				<div v-show="cell.type == 'interval' && cell.edit == true">
-					<input @blur="cell.edit = false" @keyup.enter="cell.edit = false" v-model="cell.value" type="number">
-				</div>
-				<div v-show="cell.type == 'selection' && cell.edit == true">
-					<select @blur="cell.edit = false" @keyup.enter="cell.edit = false" v-model="cell.value">
-						<option v-for="op in cell.options">{{op.caption}}</option>
-		            </select>
-				</div>
--->
-	        </td>
-	      </tr>
-	    </tbody>
-	  </table>
-	</script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script src="/app"></script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>tasker-spa</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
 </html>
-	
