@@ -7,6 +7,8 @@ This is a SPA for make solving any task more simpler and faster.
 
 Quickstart
 -----------
-	1) npm run build
-	2) pip install requirements.txt
-	3) python server.py
+	1) cd client
+	2) npm run build
+	3) cd ..
+	4) pip install requirements.txt
+	5) python server.py
