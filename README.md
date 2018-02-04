@@ -7,5 +7,6 @@ This is a SPA for make solving any task more simpler and faster.
 
 Quickstart
 -----------
-	1) pip install requirements.txt
-	2) python server.py
+	1) npm run build
+	2) pip install requirements.txt
+	3) python server.py
