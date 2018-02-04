@@ -1,13 +1,14 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory,request,json
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder = "./dist/static",)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    parent = db.Column(db.Integer, default=0)
     content = db.Column(db.Text)
     done = db.Column(db.Boolean, default=False)
 
@@ -21,13 +22,9 @@ class Task(db.Model):
 db.drop_all()
 db.create_all()
 
-@app.route("/app")
-def get_app():
-    return send_from_directory('','src/main.js')
-    
 @app.route("/")
 def index():
-    return send_from_directory('','index.html')
+    return send_from_directory('','dist/index.html')
 
 @app.route("/list")
 def get_list():
@@ -47,7 +44,10 @@ def get_answers():
 
 @app.route('/new',methods=['POST'])
 def create_task():
-    return
+    # ~ new_task = json.loads(request.data)
+    new_task = request.get_json()
+    print(new_task['text'])
+    return ''
 
 @app.route('/subtask/<int:task_id>',methods=['POST'])
 def create_subtask():
@@ -85,4 +85,5 @@ def resolve_task(task_id):
     db.session.commit()
     return redirect('/')
         
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
