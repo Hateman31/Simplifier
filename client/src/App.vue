@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-      <task v-for="number in computedList" :number="number"></task>
+	  <taskList v-if="computedList.length > 0" :list="computedList"></taskList>
+	  <h3 v-if="computedList.length == 0">TaskList are empty!</h3>
       <a @click="createTask">Create task</a>
   </div>
 </template>
 
 <script>
-import task from './components/task'
+import taskList from './components/TaskList'
 
 export default {
   name: 'App',
@@ -19,33 +20,34 @@ export default {
       }
   },
   components: {
-    task
+    taskList,
   },
   methods:{
     getList: function(){
-        this.list = [1,2]
+        this.list = []
     },
     createTask: function(){
-        fetch(
-            '/new',
-            {
-              method:'POST',
-              headers:{
-				'Content-Type':'application/json;charset=utf-8'
-			  },
-              body: JSON.stringify({'text':'New task are sended!'})
-            }
-        ).then(function(text) {  
-            console.log('Request successful', text);  
-        }) 
+		this.list.unshift(this.last_number+1)
+        //~ fetch(
+            //~ '/new',
+            //~ {
+              //~ method:'POST',
+              //~ headers:{
+				//~ 'Content-Type':'application/json;charset=utf-8'
+			  //~ },
+              //~ body: JSON.stringify({'text':'New task are sended!'})
+            //~ }
+        //~ ).then(function(text) {  
+            //~ console.log('Request successful', text);  
+        //~ }) 
     }
   },
   computed:{
     computedList: function(){
-        if(this.list !== [])
-            return this.list
-        else
-            return []
+		return this.list.length !== 0 ?  this.list : []
+    },
+    last_number: function(){
+		return this.list.length !== 0 ?  this.list[0] : 0
     }
   }
 }
