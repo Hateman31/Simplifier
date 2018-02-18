@@ -11,4 +11,4 @@ Quickstart
 	2) npm run build
 	3) cd ..
 	4) npm install
-	5) node server.py
+	5) node server.js
