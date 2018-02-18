@@ -10,5 +10,5 @@ Quickstart
 	1) cd client
 	2) npm run build
 	3) cd ..
-	4) pip install requirements.txt
-	5) python server.py
+	4) npm install requirements.txt
+	5) node server.py
