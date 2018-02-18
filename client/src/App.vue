@@ -1,9 +1,11 @@
-<template>
-  <div id="app">
-	  <taskList v-if="computedList.length > 0" :list="computedList"></taskList>
-	  <h3 v-if="computedList.length == 0">TaskList are empty!</h3>
-      <a @click="createTask">Create task</a>
-  </div>
+<template lang="pug">
+	div(id="app")
+		div
+			a(@click="createTask") Create task
+		div
+			taskList(v-if="computedList.length > 0" :list="computedList")
+		div(v-if="computedList.length == 0") 
+			h3 TaskList are empty!
 </template>
 
 <script>
@@ -28,18 +30,18 @@ export default {
     },
     createTask: function(){
 		this.list.unshift(this.last_number+1)
-        //~ fetch(
-            //~ '/new',
-            //~ {
-              //~ method:'POST',
-              //~ headers:{
-				//~ 'Content-Type':'application/json;charset=utf-8'
-			  //~ },
-              //~ body: JSON.stringify({'text':'New task are sended!'})
-            //~ }
-        //~ ).then(function(text) {  
-            //~ console.log('Request successful', text);  
-        //~ }) 
+        fetch(
+            '/new',
+            {
+              method:'POST',
+              headers:{
+				'Content-Type':'application/json;charset=utf-8'
+			  },
+              body: JSON.stringify({'text':'New task are sended!'})
+            }
+        ).then(function(text) {  
+            console.log('Request successful', text);  
+        }) 
     }
   },
   computed:{

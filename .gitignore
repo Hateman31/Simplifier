@@ -1,5 +1,7 @@
 dist/
+node_modules/
 client/node_modules/
 client/src/assets/
 *.db
-server.js
+server.py
+/docs
