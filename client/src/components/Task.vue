@@ -1,7 +1,6 @@
-<template>
-  <div class="task">
-    <h1>task {{ number }}!</h1>
-  </div>
+<template lang="pug">
+  div( class="task")
+    h1 task {{ number }}!
 </template>
 
 <script>

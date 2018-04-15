@@ -1,7 +1,6 @@
-<template>
-  <div class="tasklist">
-    <task v-for="number in list" :number="number" :key="number.id"></task>
-  </div>
+<template lang="pug">
+  div(class="tasklist")
+    task(v-for="number in list" :number="number" :key="number.id")
 </template>
 
 <script>
