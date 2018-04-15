@@ -1,7 +1,7 @@
 <template lang="pug">
 	div(id="app")
 		div
-			a(@click="createTask") Create task
+			a(@click="createTask" class="btn") Create task
 		div
 			taskList(v-if="computedList.length > 0" :list="computedList")
 		div(v-if="computedList.length == 0") 
@@ -63,5 +63,23 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50; /* Green */
+    border-radius: 4px;
+    font-size: 18px;
+    padding: 12px 22px;
+}
+
+.btn:hover {
+    background-color: #4CAF50; /* Green */
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    color: white;
 }
 </style>
