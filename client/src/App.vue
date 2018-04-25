@@ -1,15 +1,17 @@
 <template lang="pug">
 	div(id="app")
 		div(id="menu")
-			a(@click="createTask" class="btn") Create task
+			a(@click="createTask" class="btn" v-if="!new_task") Create task
+		newTask(v-if="new_task" @saveTask="save_task")
 		div(id="tasklist")
 			taskList(v-if="computedList.length > 0" :list="computedList")
 			div(v-if="computedList.length == 0") 
-				h3 TaskList are empty!
+				h3 List is empty!
 </template>
 
 <script>
 import taskList from './components/TaskList'
+import newTask from './components/newTask'
 
 export default {
   name: 'App',
@@ -19,30 +21,24 @@ export default {
   data(){
       return {
         list:[]
+        ,new_task: false
       }
   },
   components: {
     taskList,
+    newTask,
   },
   methods:{
     getList: function(){
         this.list = []
     },
-    createTask: function(){
-		this.list.unshift(this.last_number+1)
-        fetch(
-            '/new',
-            {
-              method:'POST',
-              headers:{
-				'Content-Type':'application/json;charset=utf-8'
-			  },
-              body: JSON.stringify({'text':'New task are sended!'})
-            }
-        ).then(function(text) {  
-            console.log('Request successful', text);  
-        }) 
-    }
+    createTask(){
+		//~ this.list.unshift(this.last_number+1)
+		this.new_task = true 
+    },
+    save_task(){
+		console.log('haha')
+	}
   },
   computed:{
     computedList: function(){
@@ -67,6 +63,7 @@ export default {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   grid-gap: 10px;
+  grid-row-gap: 20px;
 }
 
 .btn {
@@ -81,7 +78,6 @@ export default {
 
 .menu{
 	grid-column: 1/2;
-    grid-row: 1
 }    
 
 .btn:hover {
