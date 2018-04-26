@@ -1,6 +1,6 @@
 <template lang="pug">
   div(class="tasklist")
-    task(class="task" v-for="number in list" :number="number" :key="number.id")
+    task(class="task" v-for="task in list" :number="task.number" :key="task.id")
 </template>
 
 <script>

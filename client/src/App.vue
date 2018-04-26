@@ -33,11 +33,13 @@ export default {
         this.list = []
     },
     createTask(){
-		//~ this.list.unshift(this.last_number+1)
 		this.new_task = true 
     },
-    save_task(){
-		console.log('haha')
+    save_task(task){
+		this.new_task = false
+		task.number = this.last_number+1
+		this.list.unshift(task)
+		//~ console.log(task)
 	}
   },
   computed:{
@@ -45,7 +47,7 @@ export default {
 		return this.list.length !== 0 ?  this.list : []
     },
     last_number: function(){
-		return this.list.length !== 0 ?  this.list[0] : 0
+		return this.list.length !== 0 ?  this.list[0].number : 0
     }
   }
 }
