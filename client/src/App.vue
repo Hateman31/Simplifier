@@ -1,12 +1,14 @@
 <template lang="pug">
 	div(id="app")
-		div(id="menu")
-			a(@click="createTask" class="btn" v-if="!new_task") Create task
-		newTask(v-if="new_task" @saveTask="save_task")
-		div(id="tasklist")
-			taskList(v-if="computedList.length > 0" :list="computedList")
-			div(v-if="computedList.length == 0") 
-				h3 List is empty!
+		div(id="mainpage" v-if="page == 'main'")
+			div(id="menu")
+				a(@click="createTask" class="btn" v-if="!new_task") Create task
+			newTask(v-if="new_task" @saveTask="save_task")
+			div(id="tasklist")
+				taskList(v-if="computedList.length > 0" :list="computedList")
+				div(v-if="computedList.length == 0") 
+					h3 List is empty!
+		div(id="taskpage" v-if="page == 'task'")
 </template>
 
 <script>
@@ -22,6 +24,7 @@ export default {
       return {
         list:[]
         ,new_task: false
+        ,page: 'main'
       }
   },
   components: {
@@ -61,6 +64,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#mainpage{
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;

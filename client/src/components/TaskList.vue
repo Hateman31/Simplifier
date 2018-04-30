@@ -1,6 +1,11 @@
 <template lang="pug">
   div(class="tasklist")
-    task(class="task" v-for="task in list" :number="task.number" :key="task.id")
+    task(
+        class="task" 
+        v-for="item in list" 
+        :task="item" 
+        :key="item.id"
+    )
 </template>
 
 <script>
@@ -9,13 +14,13 @@ import task from './Task.vue'
 export default {
   name: 'taskList',
   props:{
-	list: Array
+    list: Array
   },
   data () {
     return { }
   },
   components: {
-	  task
+      task
   }
 }
 </script>

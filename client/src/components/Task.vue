@@ -1,17 +1,25 @@
 <template lang="pug">
   div( class="task")
-    h1 task {{ number }}!
+    div(id="head")
+        h1(@click="verbose = !verbose;") # {{ task.number }}!
+    div(id="body" v-if="verbose")
+        div(id="name")
+            h3 Name
+            p {{task.name}}
+        div(id="description")
+            h3 Description
+            p {{task.description}}
 </template>
 
 <script>
 export default {
   name: 'task',
   props:{
-	number: Number
+    task: Object
   },
   data () {
     return {
-      msg: ''
+      verbose: false
     }
   }
 }
