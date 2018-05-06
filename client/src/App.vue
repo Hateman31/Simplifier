@@ -2,6 +2,7 @@
 	div(id="app")
 		div(id="mainpage" v-if="page == 'main'")
 			div(id="menu")
+				a Active task
 				a(@click="createTask" class="btn" v-if="!new_task") Create task
 			newTask(v-if="new_task" @saveTask="save_task")
 			div(id="tasklist")
@@ -86,6 +87,7 @@ export default {
 
 .menu{
 	grid-column: 1/2;
+	display: grid;
 }    
 
 .btn:hover {
